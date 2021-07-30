@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1627403341 source:d:\6th sem\cgvlab\miniproject\main.cpp
+1627556074 source:d:\6th sem\cgvlab\miniproject\main.cpp
 	<GL/glut.h>
 	<stdlib.h>
 	<stdio.h>

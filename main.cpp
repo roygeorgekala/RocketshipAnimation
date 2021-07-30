@@ -728,7 +728,7 @@ void keyboard(unsigned char key, int x, int y)
 void page()
 {
 	glColor3f(1,1,1);
-	glLineWidth(5);
+	glLineWidth(10);
 	glBegin(GL_LINE_LOOP);
         glVertex2d(75, 450);
         glVertex2d(375, 450);
