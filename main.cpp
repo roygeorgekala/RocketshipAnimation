@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-const float DEG2RAD = 3.14159/180;
+const float DEGREE_TO_RADIANS= 3.14159/180;
 void stars();
 int p;
 void stars1();
@@ -40,7 +40,7 @@ void semicircle(float radius,float u,float v)
 
    for (int i=135; i<=315; i++)
    {
-      float degInRad = i*DEG2RAD;
+      float degInRad = i*DEGREE_TO_RADIANS;
       glVertex2f(u+cos(degInRad)*radius,v+(sin(degInRad))*radius);//100,100 specifies centre of the circle
    }
 
@@ -416,6 +416,7 @@ glVertex2f(312.5,85.0);//right_stand_holder
 	for(j=0;j<=1000000;j++)
 		;
 	glutSwapBuffers();
+	glutInitWindowSize(1200,600);
 	glutPostRedisplay();
 	glFlush();
 }
@@ -692,10 +693,8 @@ void mars(float radius)
 
    for (int i=0; i<=359; i++)
    {
-      float degInRad = i*DEG2RAD;
-      glVertex2f(300+f+cos(degInRad)*radius,500-t+(sin(degInRad))
-
-*radius);//100,100 specifies centre of the circle
+      float degInRad = i*DEGREE_TO_RADIANS;
+      glVertex2f(300+f+cos(degInRad)*radius,500-t+(sin(degInRad))*radius);//100,100 specifies centre of the circle
    }
 
    glEnd();
@@ -703,7 +702,7 @@ void mars(float radius)
    f=f+0.1;
 }
 
-//keys that trigger manual Lanch
+//keys that trigger manual Launch
 void keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'I' || key == 'i'){
