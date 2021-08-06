@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-const float DEGREE_TO_RADIANS= 3.14159/180;
+const float DEG2RAD = 3.14159/180;
 void stars();
 int p;
 void stars1();
@@ -28,7 +28,8 @@ void drawlargestring(int x, int y, char *s)
 	char *c;
 	glRasterPos2i(x, y);
 	for (c = s; *c != '\0'; *c++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *c);
+
 }
 
 
@@ -40,7 +41,7 @@ void semicircle(float radius,float u,float v)
 
    for (int i=135; i<=315; i++)
    {
-      float degInRad = i*DEGREE_TO_RADIANS;
+      float degInRad = i*DEG2RAD;
       glVertex2f(u+cos(degInRad)*radius,v+(sin(degInRad))*radius);//100,100 specifies centre of the circle
    }
 
@@ -186,7 +187,7 @@ void static_rocket()
 {
 
 count1++;
-if(count1==150)
+if(count1==350)
 flag=1;
   if(flag==0)
   {
@@ -342,57 +343,73 @@ flag=1;
 	glVertex2f(260,130.0);
 	glEnd();
 
-	glColor3f(0.8,0.498039 ,0.196078);
+    glColor3f(0.0f, 0.1f, 0.1f);
 	glBegin(GL_POLYGON);//core
-		glVertex2f(237.5,20.0);
-		glVertex2f(262.5,20.0);
-		glVertex2f(262.5,120.0);
-		glVertex2f(237.5,120.0);
+		glVertex2f(237.5,40.0+i);
+		glVertex2f(262.5,40.0+i);
+		glVertex2f(262.5,140.0+i);
+		glVertex2f(237.5,140.0+i);
+
+
 	glEnd();
 
 	glColor3f(1.0,1.0,1.0);//bonnet
 	glBegin(GL_POLYGON);//front
-	glVertex2f(237.5,120.0);
-	glVertex2f(262.5,120.0);
-	glVertex2f(250,170.0);
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(250,190.0+i);
 	glEnd();
+
+	//glColor3f(11, 61, 145);
+	glColor3f(0.0f, 0.1f, 0.1f);
+	glBegin(GL_POLYGON);//core
+		glVertex2f(237.5,20.0+i);
+		glVertex2f(262.5,20.0+i);
+		glVertex2f(262.5,120.0+i);
+		glVertex2f(237.5,120.0+i);
+
+
+	glEnd();
+
+
 	glColor3f(1.0,0.0,0.0);
 	glBegin(GL_POLYGON);//left_side_top
-	glVertex2f(237.5,120.0);
-	glVertex2f(217.5,95.0);
-	glVertex2f(237.5,95.0);
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(217.5,115.0+i);
+	glVertex2f(237.5,115.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//left_side_bottom
-	glVertex2f(237.5,20.0);
-	glVertex2f(217.5,20.0);
-	glVertex2f(237.5,70.0);
+	glVertex2f(237.5,20.0+i);
+	glVertex2f(217.5,20.0+i);
+	glVertex2f(237.5,70.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//right_side_bottom
-	glVertex2f(262.5,20.0);
-	glVertex2f(282.5,20.0);
-	glVertex2f(262.5,70.0);
+	glVertex2f(262.5,20.0+i);
+	glVertex2f(282.5,20.0+i);
+	glVertex2f(262.5,70.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//right_side_top
-	glVertex2f(262.5,120.0);
-	glVertex2f(262.5,95.0);
-	glVertex2f(282.5,95.0);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(262.5,115.0+i);
+	glVertex2f(282.5,115.0+i);
 	glEnd();
 	glColor3f(0.556863 ,0.137255  ,0.419608);
 		glBegin(GL_POLYGON);//bottom_1_exhaust
-	glVertex2f(237.5,20.0);
-	glVertex2f(244.5,20.0);
-	glVertex2f(241,0.0);
+	glVertex2f(237.5,20.0+i);
+	glVertex2f(244.5,20.0+i);
+	glVertex2f(241,0.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//bottom_2_exhaust
-	glVertex2f(246.5,20.0);
-	glVertex2f(253.5,20.0);
-	glVertex2f(249.5,0.0);
+	glVertex2f(246.5,20.0+i);
+	glVertex2f(253.5,20.0+i);
+	glVertex2f(249.5,0.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//bottom_3_exhaust
-	glVertex2f(262.5,20.0);
-	glVertex2f(255.5,20.0);
-	glVertex2f(258.5,0.0);
+	glVertex2f(262.5,20.0+i);
+	glVertex2f(255.5,20.0+i);
+	glVertex2f(258.5,0.0+i);
 	glEnd();
+
 
 	glBegin(GL_POLYGON);//left_stand_holder
 	glVertex2f(182.5,85.0);
@@ -416,24 +433,41 @@ glVertex2f(312.5,85.0);//right_stand_holder
 	for(j=0;j<=1000000;j++)
 		;
 	glutSwapBuffers();
-	glutInitWindowSize(1200,600);
 	glutPostRedisplay();
 	glFlush();
 }
 
 }
 void rocket_to_cam_pos()
-{
+{ glutInitWindowSize(600,900);
 	count++;
 count3++;
 
-for(i=0;i<=200;i++)
+for(i=100;i<=500;i++)
 {
 
 	glClearColor(0.196078  ,0.6 ,0.8,1.0);
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-	glColor3f(0.8,0.498039 ,0.196078);
+	glColor3f(0.0f, 0.1f, 0.1f);
+	glBegin(GL_POLYGON);//core
+		glVertex2f(237.5,40.0+i);
+		glVertex2f(262.5,40.0+i);
+		glVertex2f(262.5,140.0+i);
+		glVertex2f(237.5,140.0+i);
+
+
+	glEnd();
+
+	glColor3f(1.0,1.0,1.0);//bonnet
+	glBegin(GL_POLYGON);//front
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(250,190.0+i);
+	glEnd();
+
+	//glColor3f(11, 61, 145);
+	glColor3f(0.0f, 0.1f, 0.1f);
 	glBegin(GL_POLYGON);//core
 		glVertex2f(237.5,20.0+i);
 		glVertex2f(262.5,20.0+i);
@@ -443,17 +477,11 @@ for(i=0;i<=200;i++)
 
 	glEnd();
 
-	glColor3f(1.0,1.0,1.0);//bonnet
-	glBegin(GL_POLYGON);//front
-	glVertex2f(237.5,120.0+i);
-	glVertex2f(262.5,120.0+i);
-	glVertex2f(250,170.0+i);
-	glEnd();
 	glColor3f(1.0,0.0,0.0);
 	glBegin(GL_POLYGON);//left_side_top
-	glVertex2f(237.5,120.0+i);
-	glVertex2f(217.5,95.0+i);
-	glVertex2f(237.5,95.0+i);
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(217.5,115.0+i);
+	glVertex2f(237.5,115.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//left_side_bottom
 	glVertex2f(237.5,20.0+i);
@@ -466,9 +494,9 @@ for(i=0;i<=200;i++)
 	glVertex2f(262.5,70.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//right_side_top
-	glVertex2f(262.5,120.0+i);
-	glVertex2f(262.5,95.0+i);
-	glVertex2f(282.5,95.0+i);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(262.5,115.0+i);
+	glVertex2f(282.5,115.0+i);
 	glEnd();
 	glColor3f(0.556863 ,0.137255  ,0.419608);
 		glBegin(GL_POLYGON);//bottom_1_exhaust
@@ -486,6 +514,7 @@ for(i=0;i<=200;i++)
 	glVertex2f(255.5,20.0+i);
 	glVertex2f(258.5,0.0+i);
 	glEnd();
+
 
 	if((p%2)==0)
 				 glColor3f(1.0,0.25,0.0);
@@ -593,13 +622,23 @@ for(i=195;i<=200;i++)
 	 mars(20.0);
 
 	 if(count<=130){
-	glColor3f(0.8,0.498039 ,0.196078);
+	glColor3f(0.0f, 0.1f, 0.1f);
+	glBegin(GL_POLYGON);//core
+		glVertex2f(237.5,40.0+i);
+		glVertex2f(262.5,40.0+i);
+		glVertex2f(262.5,140.0+i);
+		glVertex2f(237.5,140.0+i);
+	glEnd();
+	glColor3f(0.0f, 0.1f, 0.1f);
 	glBegin(GL_POLYGON);//core
 		glVertex2f(237.5,20.0+i);
 		glVertex2f(262.5,20.0+i);
 		glVertex2f(262.5,120.0+i);
 		glVertex2f(237.5,120.0+i);
+
+
 	glEnd();
+
 	}
 
 	if(count>=150){
@@ -628,18 +667,19 @@ for(i=195;i<=200;i++)
 	else{
 	glColor3f(1.0,1.0,1.0);//bonnet
 	glBegin(GL_POLYGON);//front
-	glVertex2f(237.5,120.0+i);
-	glVertex2f(262.5,120.0+i);
-	glVertex2f(250,170.0+i);
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(250,190.0+i);
 	glEnd();
 	}
+
 
 	if(count<=120){
 	glColor3f(1.0,0.0,0.0);
 	glBegin(GL_POLYGON);//left_side_top
-	glVertex2f(237.5,120.0+i);
-	glVertex2f(217.5,95.0+i);
-	glVertex2f(237.5,95.0+i);
+	glVertex2f(237.5,140.0+i);
+	glVertex2f(217.5,115.0+i);
+	glVertex2f(237.5,115.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//left_side_bottom
 	glVertex2f(237.5,20.0+i);
@@ -652,9 +692,9 @@ for(i=195;i<=200;i++)
 	glVertex2f(262.5,70.0+i);
 	glEnd();
 		glBegin(GL_POLYGON);//right_side_top
-	glVertex2f(262.5,120.0+i);
-	glVertex2f(262.5,95.0+i);
-	glVertex2f(282.5,95.0+i);
+	glVertex2f(262.5,140.0+i);
+	glVertex2f(262.5,115.0+i);
+	glVertex2f(282.5,115.0+i);
 	glEnd();
 	}
 
@@ -677,6 +717,7 @@ for(i=195;i<=200;i++)
 	glEnd();
 	}
 
+
 	for(j=0;j<=1000000;j++)
 		;
 	glutSwapBuffers();
@@ -693,8 +734,10 @@ void mars(float radius)
 
    for (int i=0; i<=359; i++)
    {
-      float degInRad = i*DEGREE_TO_RADIANS;
-      glVertex2f(300+f+cos(degInRad)*radius,500-t+(sin(degInRad))*radius);//100,100 specifies centre of the circle
+      float degInRad = i*DEG2RAD;
+      glVertex2f(300+f+cos(degInRad)*radius,500-t+(sin(degInRad))
+
+*radius);//100,100 specifies centre of the circle
    }
 
    glEnd();
@@ -702,7 +745,7 @@ void mars(float radius)
    f=f+0.1;
 }
 
-//keys that trigger manual Launch
+//keys that trigger manual Lanch
 void keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'I' || key == 'i'){
@@ -780,7 +823,7 @@ void page()
     glEnd();
 
 
-    drawstring(100, 175, "NAME : M. S. Vishnupriya");
+    drawstring(100, 175, "NAME : M.S.Vishnupriya");
 	drawstring(100, 150, "USN : 1BY18CS086");
 	drawstring(100, 125, "SEM : VI");
 
@@ -813,6 +856,7 @@ void display()
 void myinit()
 {
 	glClearColor(1 ,0.6 ,0.2,1.0);
+   // glClearColor(51,193,193,1);
 	glPointSize(1.0);
 	gluOrtho2D(0.0,499.0,0.0,499.0);
 }
